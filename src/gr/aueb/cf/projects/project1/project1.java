@@ -6,8 +6,8 @@ public class project1 {
 
     public static void main(String[] args) throws IOException {
         // Διαβάζουμε αριθμούς από το αρχείο
-        int[] numbers = readNumbersFromFile("input.txt");
-        if (numbers.length <= 7 || numbers.length >= 49) {
+        int[] numbers = readNumbersFromFile("C:/Java/input.txt");
+        if (numbers.length < 7 || numbers.length > 49) {
             System.out.println("Το αρχείο πρέπει να περιέχει από 7 έως 49 αριθμούς.");
             return;
         }
@@ -16,11 +16,11 @@ public class project1 {
         Arrays.sort(numbers);
 
         // Παραγωγή εξάδων και φιλτράρισμα
-        List<int[]> validCombinations = new ArrayList<>();
-        generateCombinations(numbers, new int[6], 0, 0, validCombinations);
+        int[][] validCombinations = new int[1000000][6]; // Προσωρινός μεγάλος πίνακας για αποθήκευση
+        int validCount = generateCombinations(numbers, new int[6], 0, 0, validCombinations, 0);
 
         // Εγγραφή των αποτελεσμάτων στο αρχείο
-        writeCombinationsToFile(validCombinations.toArray(new int[validCombinations.size()][]), "output.txt");
+        writeCombinationsToFile(Arrays.copyOf(validCombinations, validCount), "C:/Java/output.txt");
     }
 
     private static int[] readNumbersFromFile(String filename) throws IOException {
@@ -41,18 +41,20 @@ public class project1 {
         return Arrays.copyOf(numbers, count);
     }
 
-    private static void generateCombinations(int[] numbers, int[] combination, int start, int index, List<int[]> validCombinations) {
+    private static int generateCombinations(int[] numbers, int[] combination, int start, int index, int[][] validCombinations, int validCount) {
         if (index == 6) {
             if (isValidCombination(combination)) {
-                validCombinations.add(combination.clone());
+                validCombinations[validCount] = combination.clone();
+                validCount++;
             }
-            return;
+            return validCount;
         }
 
         for (int i = start; i < numbers.length; i++) {
             combination[index] = numbers[i];
-            generateCombinations(numbers, combination, i + 1, index + 1, validCombinations);
+            validCount = generateCombinations(numbers, combination, i + 1, index + 1, validCombinations, validCount);
         }
+        return validCount;
     }
 
     private static boolean isValidCombination(int[] combination) {
