@@ -3,7 +3,7 @@ package gr.aueb.cf.ch6;
 public class ArraysAsCollections {
 
     public static void main(String[] args) {
-
+        int[] arr = {1, 11, 21, 31, 8, 9};
     }
 
     public static int[] getEvens(int[] arr){
