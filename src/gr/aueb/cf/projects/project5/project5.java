@@ -14,32 +14,32 @@ public class project5 {
             System.out.println("4. Έξοδος");
             System.out.print("Επιλέξτε μία ενέργεια (1/2/3/4): ");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Καθαρισμός του buffer του scanner
+            scanner.nextLine();
 
             if (choice == 1) {
-                // Κράτηση θέσης
+
                 System.out.print("Εισάγετε τη στήλη (A-L): ");
                 char column = scanner.nextLine().charAt(0);
                 System.out.print("Εισάγετε τη σειρά (1-30): ");
                 int row = scanner.nextInt();
-                scanner.nextLine(); // Καθαρισμός του buffer
+                scanner.nextLine();
                 theatre.book(column, row);
 
             } else if (choice == 2) {
-                // Ακύρωση κράτησης
+
                 System.out.print("Εισάγετε τη στήλη (A-L): ");
                 char column = scanner.nextLine().charAt(0);
                 System.out.print("Εισάγετε τη σειρά (1-30): ");
                 int row = scanner.nextInt();
-                scanner.nextLine(); // Καθαρισμός του buffer
+                scanner.nextLine();
                 theatre.cancel(column, row);
 
             } else if (choice == 3) {
-                // Εμφάνιση των θέσεων
+
                 theatre.showSeats();
 
             } else if (choice == 4) {
-                // Έξοδος
+
                 System.out.println("Έξοδος από το πρόγραμμα.");
                 break;
 
@@ -50,46 +50,46 @@ public class project5 {
 
         scanner.close();
     }
-    // Δημιουργία του πίνακα του θεάτρου: 30 σειρές και 12 στήλες
+
     private boolean[][] seats = new boolean[30][12];
 
-    // Μέθοδος για να κρατήσουμε μία θέση
-    public void book(char column, int row) {
-        // Μετατροπή της στήλης σε δείκτη (0-11 για 12 στήλες)
-        int col = column - 'A'; // Η στήλη A είναι η 0, η Β είναι η 1, κ.ο.κ.
 
-        // Έλεγχος αν η θέση είναι ήδη κρατημένη
+    public void book(char column, int row) {
+
+        int col = column - 'A';
+
+
         if (seats[row - 1][col]) {
             System.out.println("Η θέση " + column + row + " είναι ήδη κρατημένη.");
         } else {
-            seats[row - 1][col] = true; // Κράτηση της θέσης
+            seats[row - 1][col] = true;
             System.out.println("Η θέση " + column + row + " κρατήθηκε επιτυχώς.");
         }
     }
 
-    // Μέθοδος για να ακυρώσουμε μία κράτηση
+
     public void cancel(char column, int row) {
-        // Μετατροπή της στήλης σε δείκτη (0-11 για 12 στήλες)
+
         int col = column - 'A';
 
-        // Έλεγχος αν η θέση είναι ήδη ελεύθερη
+
         if (!seats[row - 1][col]) {
             System.out.println("Η θέση " + column + row + " δεν είναι κρατημένη.");
         } else {
-            seats[row - 1][col] = false; // Ακύρωση της κράτησης
+            seats[row - 1][col] = false;
             System.out.println("Η κράτηση για τη θέση " + column + row + " ακυρώθηκε επιτυχώς.");
         }
     }
 
-    // Μέθοδος για να εμφανίσουμε την κατάσταση των θέσεων (κράτηση ή όχι)
+
     public void showSeats() {
         System.out.println("Κατάσταση Θέσεων:");
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 12; j++) {
                 if (seats[i][j]) {
-                    System.out.print("[X] "); // Κρατημένη θέση
+                    System.out.print("[X] ");
                 } else {
-                    System.out.print("[ ] "); // Ελεύθερη θέση
+                    System.out.print("[ ] ");
                 }
             }
             System.out.println();

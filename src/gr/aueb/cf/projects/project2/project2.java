@@ -15,30 +15,23 @@ public class project2 {
         System.out.println("Το μέγιστο άθροισμα (αναδρομική): " + resultRecursive);
     }
 
-    // (γ) Πολυπλοκότητα
-    // - Χρονική Πολυπλοκότητα: O(n)
-    //   Στην επαναληπτική υλοποίηση, διατρέχουμε τον πίνακα μία φορά (n στοιχεία).
-    //   Στην αναδρομική υλοποίηση, κάθε στοιχείο υπολογίζεται μία φορά λόγω αποθήκευσης (memoization).
-    // - Χωρική Πολυπλοκότητα: O(1) για την επαναληπτική υλοποίηση (χρησιμοποιούμε σταθερό χώρο).
-    //   Στην αναδρομική, η στοίβα κλήσεων απαιτεί O(n) χώρο.
-
 
 
     public static int maxSubArray(int[] nums) {
         int currentSum = 0;
-        int maxSum = Integer.MIN_VALUE; // Ξεκινάμε με την ελάχιστη δυνατή τιμή
+        int maxSum = Integer.MIN_VALUE;
 
         for (int num : nums) {
-            // Επιλέγουμε αν θα συνεχίσουμε τον υποπίνακα ή αν θα ξεκινήσουμε νέο
+
             currentSum = Math.max(num, currentSum + num);
-            // Ενημερώνουμε το μέγιστο άθροισμα
+
             maxSum = Math.max(maxSum, currentSum);
         }
 
         return maxSum;
     }
 
-    // Αναδρομική προσέγγιση με static globalMaximum
+
     private static int globalMaximum;
 
     public static int maxSubArrayRecursive(int[] nums) {
