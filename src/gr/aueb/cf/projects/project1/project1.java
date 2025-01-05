@@ -5,21 +5,21 @@ import java.util.*;
 public class project1 {
 
     public static void main(String[] args) throws IOException {
-        // Διαβάζουμε αριθμούς από το αρχείο
+
         int[] numbers = readNumbersFromFile("C:/Java/input.txt");
         if (numbers.length < 7 || numbers.length > 49) {
             System.out.println("Το αρχείο πρέπει να περιέχει από 7 έως 49 αριθμούς.");
             return;
         }
 
-        // Ταξινόμηση του πίνακα
+
         Arrays.sort(numbers);
 
-        // Παραγωγή εξάδων και φιλτράρισμα
-        int[][] validCombinations = new int[100000][6]; // Προσωρινός μεγάλος πίνακας για αποθήκευση
+
+        int[][] validCombinations = new int[100000][6];
         int validCount = generateCombinations(numbers, new int[6], 0, 0, validCombinations, 0);
 
-        // Εγγραφή των αποτελεσμάτων στο αρχείο
+
         writeCombinationsToFile(Arrays.copyOf(validCombinations, validCount), "C:/Java/output.txt");
     }
 
