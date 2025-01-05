@@ -16,7 +16,7 @@ public class project1 {
         Arrays.sort(numbers);
 
         // Παραγωγή εξάδων και φιλτράρισμα
-        int[][] validCombinations = new int[1000000][6]; // Προσωρινός μεγάλος πίνακας για αποθήκευση
+        int[][] validCombinations = new int[100000][6]; // Προσωρινός μεγάλος πίνακας για αποθήκευση
         int validCount = generateCombinations(numbers, new int[6], 0, 0, validCombinations, 0);
 
         // Εγγραφή των αποτελεσμάτων στο αρχείο
@@ -29,9 +29,9 @@ public class project1 {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] tokens = line.split(",");
+                String[] tokens = line.split("[, ]");
                 for (String token : tokens) {
-                    int number = Integer.parseInt(token.trim());
+                    int number = Integer.parseInt(token);
                     if (number >= 1 && number <= 49) {
                         numbers[count++] = number;
                     }
