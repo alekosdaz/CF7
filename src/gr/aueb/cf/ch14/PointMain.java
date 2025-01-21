@@ -29,6 +29,9 @@ public class PointMain {
     public static void doMovePlus10(Point point) {
         point.movePlus10();
     }
+    public static void doPrint(Point point) {
+        System.out.println(point.toString());
+    }
 
 
 }
