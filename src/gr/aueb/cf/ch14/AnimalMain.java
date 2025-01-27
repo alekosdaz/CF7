@@ -8,6 +8,7 @@ public class AnimalMain {
         dog.searchForFood();
 
         doMakeSound(dog);
+
     }
 
     public static void doMakeSound(Animal animal) {

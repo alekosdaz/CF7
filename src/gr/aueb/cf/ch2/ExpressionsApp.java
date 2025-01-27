@@ -31,7 +31,7 @@ public class ExpressionsApp {
         result1 = num1++;  //estw num1 = 8, result1 = 8, num1 = 9
         result2 = ++num2; // estw num2 = 8, result2 = 9, num2 = 9
 
-        result1 = result1 *12;
+        result1 = result1 * 12;
         result1 *= 12;
 
 

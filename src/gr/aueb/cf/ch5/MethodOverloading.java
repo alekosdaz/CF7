@@ -8,6 +8,7 @@ public class MethodOverloading {
         add(56l, 456l);
         add(45l, 5);
         add(5, 45l);
+        add(1,2, 7);
 
     }
 

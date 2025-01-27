@@ -26,7 +26,10 @@ public class Animal {
     }
 
     public void setAge(int age) {
-        this.age = age;
+        if(age >= 0) {
+            this.age = age;
+        }
+
     }
 
     public void makeSound() {
